@@ -3,14 +3,14 @@ import java.util.Stack;
 public class BST implements BSTInterface {
     static class Node{
         private final int data;
-        private Node left, right =null;
+        private Node left, right;
 
         public Node(int data){
             this.data = data;
             left = right = null;
         }
 
-        //Checks if node is leaf
+        //Checks if node is leaf (there is no node after it)
         public boolean isLeaf(){
             return left == null && right == null;
             //alternatively can be written as:
@@ -88,14 +88,64 @@ public class BST implements BSTInterface {
 
     //iterative pre-post-in-Order traversal algorithm without recursion!
     public void preOrderWithoutRecursion(){
+        /*
+        iterativePreorder(node)
+  if (node == null)
+    return
+  stack ← empty stack
+  stack.push(node)
+  while (not stack.isEmpty())
+    node ← stack.pop()
+    visit(node)
+    //right child is pushed first so that left is processed first
+    if node.right ≠ null
+      stack.push(node.right)
+    if node.left ≠ null
+      stack.push(node.left)
+         */
+
         Stack<Node> nodes = new Stack<>();
+
         if(root == null)
             return;
         nodes.push(root);
 
+        while(!nodes.isEmpty()){
+            root = nodes.pop();
+            System.out.println(root.data);
+            if(root.right != null)
+                nodes.push(root.right);
+            if(root.left != null)
+                nodes.push(root.left);
+        }
     }
 
-    public void inOrderWithoutRecursion(){}
+    public void inOrderWithoutRecursion(){
+        /*
+        iterativeInorder(node)
+        stack ← empty stack
+        while (node ≠ null or not stack.isEmpty())
+            if (node ≠ null)
+            stack.push(node)
+            node ← node.left
+        else
+            node ← stack.pop()
+            visit(node)
+            node ← node.right
+         */
+        Stack<Node> nodes = new Stack<>();
+        while (root != null || !nodes.isEmpty()){
+            if(root != null){
+                nodes.push(root);
+                root = root.left;
+            }else{
+                root = nodes.pop();
+                System.out.println(root.data);
+                root = root.right;
+            }
+        }
+
+    }
 
     public void postOrderWithoutRecursion(){
         Stack<Node> nodes = new Stack<>();
