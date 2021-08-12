@@ -90,18 +90,18 @@ public class BST implements BSTInterface {
     public void preOrderWithoutRecursion(){
         /*
         iterativePreorder(node)
-  if (node == null)
-    return
-  stack ← empty stack
-  stack.push(node)
-  while (not stack.isEmpty())
-    node ← stack.pop()
-    visit(node)
+            if (node == null)
+                return
+            stack ← empty stack
+            stack.push(node)
+            while (not stack.isEmpty())
+                node ← stack.pop()
+                visit(node)
     //right child is pushed first so that left is processed first
-    if node.right ≠ null
-      stack.push(node.right)
-    if node.left ≠ null
-      stack.push(node.left)
+                if node.right ≠ null
+                    stack.push(node.right)
+                if node.left ≠ null
+                    stack.push(node.left)
          */
 
         Stack<Node> nodes = new Stack<>();
